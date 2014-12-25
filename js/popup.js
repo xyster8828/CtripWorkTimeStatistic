@@ -14,6 +14,8 @@ chrome.runtime.onMessage.addListener(
             $("[data-ctr=total]").html(request.totalTime+'h');
             $("[data-ctr=days]").html(request.workDays);
             $("[data-ctr=average]").html(request.workTimePerDay+'h');
+            $("[data-ctr=need]").html(request.need);
+            $("[data-ctr=diff]").html(request.diff+'h');
         }
     });
 

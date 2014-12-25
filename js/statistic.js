@@ -6,7 +6,8 @@
  */
 (function(){
     var timeFormat="HH:mm";
-    var totalTime=0, workDays= 0, workTimePerDay=0;
+    var totalTime=0, workDays= 0, workTimePerDay= 0, diff, need;
+    var ONEDAY=9;//一天应该工作9小时
 
 //    var $table = $("#ctl00_cphMain_CalendarAC");
     var $table = $(window.frames['Main'].document.getElementById('ctl00_cphMain_CalendarAC'));
@@ -24,11 +25,16 @@
 
     var totalHours= (totalTime/(1000*3600)).toFixed(2);
     workTimePerDay=(totalHours/(workDays)).toFixed(2);
+    need=workDays*ONEDAY;
+    diff=(totalHours-need).toFixed(2);
 
     chrome.runtime.sendMessage({
         totalTime: totalHours,
         workDays: workDays,
-        workTimePerDay: workTimePerDay
+        workTimePerDay: workTimePerDay,
+        need: need,
+        diff: diff
+
     }, function(response) {
         console.log(response.farewell);
     });
