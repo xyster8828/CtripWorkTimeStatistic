@@ -13,8 +13,9 @@
     var $table = $(window.frames['Main'].document.getElementById('ctl00_cphMain_CalendarAC'));
     var $list = $table.find('table.listAC');
     _.each($list, function(item){
-        var timeStr=$(item).find('td')[1].innerHTML;
-        if(timeStr=='无刷卡记录') return;
+        var $item=$(item);
+        var timeStr=$item.find('td')[1].innerHTML;
+        if(timeStr=='无刷卡记录' || $item.find('[title^="请假/外出申请记录"]').length) return;
         var arr=timeStr.split('~');
         var beginTime=moment(arr[0], timeFormat);
         var endTime=moment(arr[1], timeFormat);
