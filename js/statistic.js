@@ -21,6 +21,9 @@
         }
     });
 
+    //最多已订饭次数
+    var maxOrderCount = 0;
+
     _.each(availableRows, function (row) {
         var tds = $(row).children();
         _.each(tds, function (td, index) {
@@ -44,6 +47,10 @@
             } else {
                 workDays++;
             }
+
+            if (index >= 1 && index <= 4) {
+                maxOrderCount++;
+            }
         })
     });
 
@@ -57,7 +64,8 @@
         workDays: workDays,
         workTimePerDay: workTimePerDay,
         need: need,
-        diff: diff
+        diff: diff,
+        maxOrderCount: maxOrderCount
     }, function (response) {
         console.log(response.farewell);
     });
