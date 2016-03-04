@@ -23,6 +23,8 @@
 
     //最多已订饭次数
     var maxOrderCount = 0;
+    //一天上班不足9小时算早退
+    var absentDay = 0;
 
     _.each(availableRows, function (row) {
         var tds = $(row).children();
@@ -40,7 +42,12 @@
                 return;
             }
 
-            totalTime += endTime - beginTime;
+            var diff = endTime - beginTime;
+            totalTime += diff;
+
+            if (diff < 9 * 3600 * 1000) {
+                absentDay++;
+            }
 
             if (index == 0 || index == 6) {
 
@@ -65,7 +72,8 @@
         workTimePerDay: workTimePerDay,
         need: need,
         diff: diff,
-        maxOrderCount: maxOrderCount
+        maxOrderCount: maxOrderCount,
+        absentDay: absentDay
     }, function (response) {
         console.log(response.farewell);
     });

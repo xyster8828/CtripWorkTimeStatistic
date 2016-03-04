@@ -17,6 +17,7 @@ chrome.runtime.onMessage.addListener(
             $("[data-ctr=need]").html(request.need);
             $("[data-ctr=diff]").html(request.diff+'h');
             $("[data-ctr=maxCount]").html(request.maxOrderCount);
+            $("[data-ctr=absentDay]").html(request.absentDay);
         }
     });
 
